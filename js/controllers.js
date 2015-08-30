@@ -361,6 +361,7 @@ controllerModule.controller('events', ['clientsService', 'conf', '$cookieStore',
       filteredEvents = $filter('hideSilenced')(filteredEvents, $scope.filters.silenced);
       filteredEvents = $filter('hideClientSilenced')(filteredEvents, $scope.filters.clientSilenced);
       filteredEvents = $filter('hideOccurrences')(filteredEvents, $scope.filters.occurrences);
+      console.log(selectModel);
       _.each(filteredEvents, function(event) {
         event.selected = selectModel.selected;
       });
@@ -576,8 +577,8 @@ controllerModule.controller('sidebar', ['$location', 'navbarServices', '$scope',
 /**
 * Stashes
 */
-controllerModule.controller('stashes', ['filterService', '$routeParams', 'routingService', '$scope', 'stashesService', 'titleFactory', 'userService',
-  function (filterService, $routeParams, routingService, $scope, stashesService, titleFactory, userService) {
+controllerModule.controller('stashes', ['filterService', '$routeParams', 'routingService', '$filter', '$scope', '$rootScope', 'stashesService', 'titleFactory', 'userService',
+  function (filterService, $routeParams, routingService, $filter, $scope, $rootScope, stashesService, titleFactory, userService) {
     $scope.pageHeaderText = 'Stashes';
     titleFactory.set($scope.pageHeaderText);
 
@@ -595,6 +596,16 @@ controllerModule.controller('stashes', ['filterService', '$routeParams', 'routin
     $scope.filterComparator = filterService.comparator;
     $scope.permalink = routingService.permalink;
     $scope.user = userService;
+
+    $scope.selectStashes = function(selectModel) {
+      var filteredStashes = $filter('filter')($rootScope.stashes, $scope.filters.q);
+      filteredStashes = $filter('filter')(filteredStashes, {dc: $scope.filters.dc});
+      console.log(selectModel);
+      _.each(filteredStashes, function(stash) {
+        stash.selected = selectModel.selected;
+      });
+    };
+    console.log($rootScope);
   }
 ]);
 

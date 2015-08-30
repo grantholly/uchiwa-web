@@ -31,7 +31,7 @@
             <thead>
               <tr>
                 <th ng-if="!user.isReadOnly()">
-                  <input class="ng-pristine ng-untouched ng-valid ng-scope" ng-model="selectModel.selected" ng-change="selectEvents(selectModel)" ng-if="!user.isReadOnly()" type="checkbox">
+                  <input class="ng-pristine ng-untouched ng-valid ng-scope" ng-model="selectModel.selected" ng-change="selectStashes(selectModel)" ng-if="!user.isReadOnly()" type="checkbox">
                 </th>
                 <th ng-click="predicate = 'client'; reverse=!reverse">Name <i class="fa fa-sort"></i></th>
                 <th ng-click="predicate = 'check'; reverse=!reverse">Check <i class="fa fa-sort"></i></th>
@@ -47,7 +47,7 @@
             <tbody>
               <tr ng-repeat="stash in filtered = (stashes | filter:filters.q | filter:{dc:filters.dc}:filterComparator) | limitTo:filters.limit | buildStashes | orderBy:predicate:reverse">
                 <td class="well-{{ event.check.status }}" ng-click="$event.stopPropagation()">
-                  <input type="checkbox" ng-model="event.selected" ng-if="!user.isReadOnly()"></input>
+                  <input type="checkbox" ng-model="stash.selected" ng-if="!user.isReadOnly()"></input>
                 </td>
                 <td class="main">{{ stash.client }}</td>
                 <td>{{ stash.check }}</td>
