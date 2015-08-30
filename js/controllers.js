@@ -361,10 +361,15 @@ controllerModule.controller('events', ['clientsService', 'conf', '$cookieStore',
       filteredEvents = $filter('hideSilenced')(filteredEvents, $scope.filters.silenced);
       filteredEvents = $filter('hideClientSilenced')(filteredEvents, $scope.filters.clientSilenced);
       filteredEvents = $filter('hideOccurrences')(filteredEvents, $scope.filters.occurrences);
-      console.log(selectModel);
       _.each(filteredEvents, function(event) {
         event.selected = selectModel.selected;
       });
+    };
+
+    // my testing function for introspecting each event created in the reapeater scope
+    $scope.eventInfo = function (event, events) {
+      console.log(event);
+      console.log($scope.events);
     };
 
     $scope.resolveEvents = function(events) {
@@ -600,12 +605,31 @@ controllerModule.controller('stashes', ['filterService', '$routeParams', 'routin
     $scope.selectStashes = function(selectModel) {
       var filteredStashes = $filter('filter')($rootScope.stashes, $scope.filters.q);
       filteredStashes = $filter('filter')(filteredStashes, {dc: $scope.filters.dc});
-      console.log(selectModel);
       _.each(filteredStashes, function(stash) {
         stash.selected = selectModel.selected;
       });
     };
-    console.log($rootScope);
+
+    $scope.stashInfo = function (stash, stashes) {
+      console.log(stash);
+      console.log(stashes);
+    };
+
+    // test if this is needed
+    $scope.$watch('filters.q', function(newVal) {
+      var matched = $filter('filter')($rootScope.stashes, '!'+newVal);
+      _.each(matched, function(match) {
+        match.selected = false;
+      });
+    });
+
+    // test if this is needed
+    $scope.$watch('filters.dc', function(newVal) {
+      var matched = $filter('filter')($rootScope.stashes, {dc: '!'+newVal});
+      _.each(matched, function(match) {
+        match.selected = false;
+      });
+    });    
   }
 ]);
 

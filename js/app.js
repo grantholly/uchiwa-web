@@ -73,8 +73,6 @@ angular.module('uchiwa')
       }
     }
   });
-  console.log($rootScope);
-  console.log($cookieStore);
 });
 
 // Gravatar
