@@ -16,8 +16,7 @@
               <! --dc-->
               <ng-include src="partialsPath + '/panel/dc.html'"></ng-include>
               <! --clear stashes action -->
-              <clear-stashes data="stashes" clear-fn="clearStashes(stashes)"></clear-stashes>
-              <!-- ng-include src="partialsPath + '/panel/clear.html'"></ng-include -->
+              <clear-stashes data="stashes" clear="clearStashes" ng-if="!user.isReadOnly()"></clear-stashes>
               <! --limit-->
               <panel-limit data="stashes" filters="filters" permalink="permalink"></panel-limit>
               <! --search-->

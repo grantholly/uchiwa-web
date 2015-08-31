@@ -612,9 +612,12 @@ controllerModule.controller('stashes', ['filterService', '$routeParams', 'routin
 
     // first attempt at deleting stashes
     $scope.clearStashes = function(stashes) {
+      console.log('clear stashes function ran');
       var selectedStashes = helperService.selectedItems(stashes);
+      console.log(selectedStashes);
       _.each(selectedStashes, function(stash) {
         $scope.deleteStash(stash);
+      console.log($rootScope.stashes);
       });
       helperService.unselectItems(selectedEvents);
     };

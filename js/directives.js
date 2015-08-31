@@ -20,11 +20,10 @@ directiveModule.directive('clearStashes', ['$rootScope', function ($rootScope) {
     restrict: 'E',
     scope: {
       data: '=',
-      clearFn: '=',
-      resolveLegend: '@'
+      clear: '='
     },
-    templateUrl: $rootScope.partialsPath = '/panel/clear.html'
-  }
+    templateUrl: $rootScope.partialsPath + '/panel/clear.html'
+  };
 }]);
 
 directiveModule.directive('panelLimit', ['$rootScope', function ($rootScope) {
