@@ -604,7 +604,6 @@ controllerModule.controller('stashes', ['filterService', '$routeParams', 'routin
       });
     };
 
-    // first attempt at deleting stashes
     $scope.clearStashes = function(stashes) {
       var selectedStashes = helperService.selectedItems(stashes);
       _.each(selectedStashes, function(stash) {
@@ -613,22 +612,6 @@ controllerModule.controller('stashes', ['filterService', '$routeParams', 'routin
       });
       helperService.unselectItems(selectedStashes);
     };
-
-    // test if this is needed
-    $scope.$watch('filters.q', function(newVal) {
-      var matched = $filter('filter')($rootScope.stashes, '!'+newVal);
-      _.each(matched, function(match) {
-        match.selected = false;
-      });
-    });
-
-    // test if this is needed
-    $scope.$watch('filters.dc', function(newVal) {
-      var matched = $filter('filter')($rootScope.stashes, {dc: '!'+newVal});
-      _.each(matched, function(match) {
-        match.selected = false;
-      });
-    });    
   }
 ]);
 
