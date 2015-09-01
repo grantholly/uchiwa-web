@@ -582,8 +582,8 @@ controllerModule.controller('sidebar', ['$location', 'navbarServices', '$scope',
 /**
 * Stashes
 */
-controllerModule.controller('stashes', ['filterService', '$routeParams', 'routingService', '$filter', '$scope', '$rootScope', 'stashesService', 'titleFactory', 'userService',
-  function (filterService, $routeParams, routingService, $filter, $scope, $rootScope, stashesService, titleFactory, userService) {
+controllerModule.controller('stashes', ['filterService', '$routeParams', 'routingService', '$filter', '$scope', '$rootScope', 'stashesService', 'titleFactory', 'userService', 'helperService', 
+  function (filterService, $routeParams, routingService, $filter, $scope, $rootScope, stashesService, titleFactory, userService, helperService) {
     $scope.pageHeaderText = 'Stashes';
     titleFactory.set($scope.pageHeaderText);
 
@@ -619,7 +619,7 @@ controllerModule.controller('stashes', ['filterService', '$routeParams', 'routin
         $scope.deleteStash(stash);
       console.log($rootScope.stashes);
       });
-      helperService.unselectItems(selectedEvents);
+      helperService.unselectItems(selectedStashes);
     };
 
     $scope.stashInfo = function (stash, stashes) {
