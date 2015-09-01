@@ -590,6 +590,9 @@ controllerModule.controller('stashes', ['filterService', '$routeParams', 'routin
     $scope.predicate = 'client';
     $scope.deleteStash = stashesService.deleteStash;
 
+    // testing injection of helperService
+    console.log(helperService);
+
     // Routing
     $scope.filters = {};
     routingService.initFilters($routeParams, $scope.filters, ['dc', 'limit', 'q']);
@@ -612,7 +615,7 @@ controllerModule.controller('stashes', ['filterService', '$routeParams', 'routin
 
     // first attempt at deleting stashes
     $scope.clearStashes = function(stashes) {
-      console.log('clear stashes function ran');
+      console.log(stashes);
       var selectedStashes = helperService.selectedItems(stashes);
       console.log(selectedStashes);
       _.each(selectedStashes, function(stash) {
