@@ -576,7 +576,7 @@ controllerModule.controller('sidebar', ['$location', 'navbarServices', '$scope',
 /**
 * Stashes
 */
-controllerModule.controller('stashes', ['filterService', '$routeParams', 'routingService', '$filter', '$scope', '$rootScope', 'stashesService', 'titleFactory', 'userService', 'helperService', 
+controllerModule.controller('stashes', ['filterService', '$routeParams', 'routingService', '$filter', '$scope', '$rootScope', 'stashesService', 'titleFactory', 'userService', 'helperService',
   function (filterService, $routeParams, routingService, $filter, $scope, $rootScope, stashesService, titleFactory, userService, helperService) {
     $scope.pageHeaderText = 'Stashes';
     titleFactory.set($scope.pageHeaderText);
