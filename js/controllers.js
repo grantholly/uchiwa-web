@@ -366,12 +366,6 @@ controllerModule.controller('events', ['clientsService', 'conf', '$cookieStore',
       });
     };
 
-    // my testing function for introspecting each event created in the reapeater scope
-    $scope.eventInfo = function (event, events) {
-      console.log(event);
-      console.log($scope.events);
-    };
-
     $scope.resolveEvents = function(events) {
       var selectedEvents = helperService.selectedItems(events);
       _.each(selectedEvents, function(event) {
@@ -590,9 +584,6 @@ controllerModule.controller('stashes', ['filterService', '$routeParams', 'routin
     $scope.predicate = 'client';
     $scope.deleteStash = stashesService.deleteStash;
 
-    // testing injection of helperService
-    console.log(helperService);
-
     // Routing
     $scope.filters = {};
     routingService.initFilters($routeParams, $scope.filters, ['dc', 'limit', 'q']);
@@ -615,19 +606,12 @@ controllerModule.controller('stashes', ['filterService', '$routeParams', 'routin
 
     // first attempt at deleting stashes
     $scope.clearStashes = function(stashes) {
-      console.log(stashes);
       var selectedStashes = helperService.selectedItems(stashes);
-      console.log(selectedStashes);
       _.each(selectedStashes, function(stash) {
         $scope.deleteStash(stash);
       console.log($rootScope.stashes);
       });
       helperService.unselectItems(selectedStashes);
-    };
-
-    $scope.stashInfo = function (stash, stashes) {
-      console.log(stash);
-      console.log(stashes);
     };
 
     // test if this is needed

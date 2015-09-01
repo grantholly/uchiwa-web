@@ -101,9 +101,6 @@ serviceModule.service('backendService', ['audit', 'conf', '$http', '$interval', 
           return existingEvent || event;
         });
 
-        // commenting this original code out for testing
-        //$rootScope.stashes = data.Stashes;
-
         $rootScope.stashes = _.map(data.Stashes, function(stash) {
           if (stash.dc === null && stash.path === null) {
             return false;
